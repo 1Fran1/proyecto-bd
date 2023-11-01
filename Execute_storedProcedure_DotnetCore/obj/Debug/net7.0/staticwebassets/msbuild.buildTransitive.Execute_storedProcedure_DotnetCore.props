@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Execute_storedProcedure_DotnetCore.props" />
+</Project>

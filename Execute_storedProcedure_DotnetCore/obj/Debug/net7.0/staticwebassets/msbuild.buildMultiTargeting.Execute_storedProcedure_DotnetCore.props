@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Execute_storedProcedure_DotnetCore.props" />
+</Project>

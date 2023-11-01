@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "n8suNNVp6KQDdCwb+n4e9vNIzaxprQak9Lllp29WITU=",
+  "Source": "Execute_storedProcedure_DotnetCore",
+  "BasePath": "_content/Execute_storedProcedure_DotnetCore",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
