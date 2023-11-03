@@ -29,22 +29,37 @@ namespace Execute_storedProcedure_DotnetCore.Models
     //    public int Status { get; set; }
     //}
 
+    //public class Director
+    //{
+    //    [Key]
+    //    public int idDirector { get; set; }
+
+    //    public string identificacion { get; set; }
+
+    //    public string nombre { get; set; }
+
+    //    public string apellido1 { get; set; }
+
+    //    public string apellido2 { get; set; }
+
+    //    public int telefono { get; set; }
+
+    //    public int status { get; set; }
+    //}
+
+
+
     public class Director
     {
         [Key]
         public int idDirector { get; set; }
 
-        public string identificacion { get; set; }
+        //public int IdSede { get; set; }
 
-        public string nombre { get; set; }
+        public string UserId{ get; set; }
 
-        public string apellido1 { get; set; }
+        public int Status { get; set; }
 
-        public string apellido2 { get; set; }
-
-        public int telefono { get; set; }
-
-        public int status { get; set; }
     }
 
 }

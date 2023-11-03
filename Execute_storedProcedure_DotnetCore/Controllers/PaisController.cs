@@ -6,11 +6,13 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using Execute_storedProcedure_DotnetCore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Execute_storedProcedure_DotnetCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class PaisController : ControllerBase
     {
         private readonly MiApiContext _dbcontext;

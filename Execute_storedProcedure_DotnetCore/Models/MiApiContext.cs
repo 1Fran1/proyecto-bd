@@ -1,22 +1,41 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+
 
 namespace Execute_storedProcedure_DotnetCore.Models
 {
-    public class MiApiContext : DbContext
+
+
+    //public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    //{
+    //    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    //    {
+
+    //    }
+    //}
+
+
+
+
+
+
+    //public class MiApiContext : DbContext
+    public class MiApiContext : IdentityDbContext<ApplicationUser>
     {
         public MiApiContext(DbContextOptions<MiApiContext> options) : base(options)
         {
 
         }
-        //public virtual DbSet<Student> student { get; set; }
+
         public virtual DbSet<Pais> Pais { get; set; }
         public virtual DbSet<Director> Director { get; set; }
         public virtual DbSet<Responsable> Responsable { get; set; }
         public virtual DbSet<Sede> Sede { get; set; }
         public virtual DbSet<Proyecto> Proyecto { get; set; }
-        public virtual DbSet<Poblacion> Poblacion {  get; set; }              
+        public virtual DbSet<Poblacion> Poblacion { get; set; }
         public virtual DbSet<Actuacion> Actuacion { get; set; }
+
         //public virtual DbSet<>
 
 
@@ -25,12 +44,12 @@ namespace Execute_storedProcedure_DotnetCore.Models
         //{
 
 
-        //    //------------relaciones de 1 a 1----------------------------//
-        //    // Relación Uno a Uno entre sede y director
-        //    modelBuilder.Entity<Sede>()
-        //        .HasOne(a => a.Director)
+        //------------relaciones de 1 a 1----------------------------//
+        // Relación Uno a Uno entre sede y director
+        //modelBuilder.Entity<Sede>()
+        //        .HasOne(d => d.Director)
         //        .WithOne()
-        //        .HasForeignKey<Sede>(d => d.IdDirector);
+        //        .HasForeignKey<Director>(d => d.IdDirector);
 
 
 

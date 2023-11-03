@@ -1,0 +1,14 @@
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\bin\Debug\net7.0\UserManagement.Data.deps.json
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\bin\Debug\net7.0\UserManagement.Data.runtimeconfig.json
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\bin\Debug\net7.0\UserManagement.Data.dll
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\bin\Debug\net7.0\UserManagement.Data.pdb
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\UserManagement.Data.csproj.AssemblyReference.cache
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\UserManagement.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\UserManagement.Data.AssemblyInfoInputs.cache
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\UserManagement.Data.AssemblyInfo.cs
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\UserManagement.Data.csproj.CoreCompileInputs.cache
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\UserManagement.Data.dll
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\refint\UserManagement.Data.dll
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\UserManagement.Data.pdb
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\UserManagement.Data.genruntimeconfig.cache
+C:\Programacion\.NET\ONG_Projects\Execute_storedProcedure_DotnetCore\UserManagement.Data\obj\Debug\net7.0\ref\UserManagement.Data.dll

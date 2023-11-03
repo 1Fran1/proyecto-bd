@@ -32,20 +32,31 @@ namespace Execute_storedProcedure_DotnetCore.Models
 
 
 
+    //public class Responsable
+    //{
+    //    [Key]
+    //    public int IdResponsable { get; set; }
+
+    //    public string Identificacion { get; set; }
+
+    //    public string Nombre { get; set; }
+
+    //    public string Apellido1 { get; set; }
+
+    //    public string Apellido2 { get; set; }
+
+    //    public int Telefono { get; set; }
+
+    //    public int Status { get; set; }
+    //}
+
+
     public class Responsable
     {
         [Key]
         public int IdResponsable { get; set; }
 
-        public string Identificacion { get; set; }
-
-        public string Nombre { get; set; }
-
-        public string Apellido1 { get; set; }
-
-        public string Apellido2 { get; set; }
-
-        public int Telefono { get; set; }
+        public string UserId { get; set; }
 
         public int Status { get; set; }
     }
