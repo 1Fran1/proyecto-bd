@@ -1,5 +1,6 @@
 ﻿using Execute_storedProcedure_DotnetCore.Models;
 using Execute_storedProcedure_DotnetCore.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BloggingApis.Controllers
@@ -68,6 +69,7 @@ namespace BloggingApis.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("registerationDirector")]
         public async Task<IActionResult> RegisterDirector(RegistrationModel model)
         {
@@ -98,6 +100,7 @@ namespace BloggingApis.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("registerationResponsable")]
         public async Task<IActionResult> Registerresponsable(RegistrationModel model)
         {

@@ -7,24 +7,33 @@ using System.Data;
 using System.Threading.Tasks;
 using Execute_storedProcedure_DotnetCore.Models;
 using Microsoft.AspNetCore.Authorization;
+using Execute_storedProcedure_DotnetCore.Data;
 
 namespace Execute_storedProcedure_DotnetCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class PaisController : ControllerBase
     {
-        private readonly MiApiContext _dbcontext;
-        public PaisController(MiApiContext dbConext)
+        //private readonly UserContext _dbcontext;
+        //public PaisController(UserContext dbConext)
+        //{
+        //    _dbcontext = dbConext;
+        //}
+
+
+        private readonly MiApiContext _dbContext;
+
+        public PaisController(MiApiContext dbContext)
         {
-            _dbcontext = dbConext;
+            _dbContext = dbContext;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var paisList = await _dbcontext.Pais.FromSqlRaw("sp_GetAllPaises").ToListAsync();
+            var paisList = await _dbContext.Pais.FromSqlRaw("sp_GetAllPaises").ToListAsync();
             return Ok(paisList);
         }
 
@@ -32,7 +41,7 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
         public async Task<IActionResult> GetById(int Id)
         {
             var Sqlstr = "EXEC sp_GetPais @Id=" + Id;
-            var paisList = await _dbcontext.Pais.FromSqlRaw(Sqlstr).ToListAsync();
+            var paisList = await _dbContext.Pais.FromSqlRaw(Sqlstr).ToListAsync();
             return Ok(paisList);
         }
 
@@ -57,7 +66,7 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
                 };
 
                 // Ejecutar el stored procedure para insertar un nuevo país
-                var result = await _dbcontext.Database.ExecuteSqlRawAsync("sp_InsertPais @Nombre, @Status", nombreParam, statusParam);
+                var result = await _dbContext.Database.ExecuteSqlRawAsync("sp_IngresarPais @Nombre, @Status", nombreParam, statusParam);
 
                 // Devolver una respuesta 201 Created si la inserción fue exitosa
                 if (result > 0)
@@ -102,7 +111,7 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
                 };
 
                 // Ejecutar el stored procedure para actualizar el país
-                var result = await _dbcontext.Database.ExecuteSqlRawAsync("sp_UpdatePais @Id, @Nombre, @Status", idParam, nombreParam, statusParam);
+                var result = await _dbContext.Database.ExecuteSqlRawAsync("sp_UpdatePais @Id, @Nombre, @Status", idParam, nombreParam, statusParam);
 
                 // Devolver una respuesta 200 OK si la actualización fue exitosa
                 if (result > 0)
@@ -132,7 +141,7 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
                 };
 
                 // Ejecutar el stored procedure para eliminar el país
-                var result = await _dbcontext.Database.ExecuteSqlRawAsync("sp_DeletePais @Id", idParam);
+                var result = await _dbContext.Database.ExecuteSqlRawAsync("sp_DeletePais @Id", idParam);
 
                 // Devolver una respuesta 204 No Content si la eliminación fue exitosa
                 if (result > 0)

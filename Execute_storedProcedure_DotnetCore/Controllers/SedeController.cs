@@ -7,6 +7,7 @@ using System.Data;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Execute_storedProcedure_DotnetCore.Models;
+using Execute_storedProcedure_DotnetCore.Data;
 
 namespace Execute_storedProcedure_DotnetCore.Controllers
 {
