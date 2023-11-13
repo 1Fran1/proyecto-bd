@@ -7,7 +7,7 @@ namespace Execute_storedProcedure_DotnetCore.Models
     public class PoblacionActuacion
     {
         [Key]
-        public int IdPoblacionActuacion { get; set; }
+        public int IdPoblacion_Actuacion { get; set; }
 
         [Required]
         public int idPoblacion { get; set; }

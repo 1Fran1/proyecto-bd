@@ -20,6 +20,10 @@ namespace Execute_storedProcedure_DotnetCore.Services
             _configuration = configuration;
 
         }
+      
+        
+        
+        
         public async Task<(int, string)> Registeration(RegistrationModel model, string role)
         {
             var userExists = await userManager.FindByNameAsync(model.Username);

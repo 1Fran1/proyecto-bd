@@ -50,7 +50,7 @@ namespace Execute_storedProcedure_DotnetCore.Models
 
         public string Descripcion { get; set; }
 
-        public int IdActuacion { get; set; }
+        //public int IdActuacion { get; set; }
 
         public int Status { get; set; }
     }

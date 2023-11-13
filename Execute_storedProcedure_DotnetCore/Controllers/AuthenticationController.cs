@@ -69,7 +69,7 @@ namespace BloggingApis.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [Route("registerationDirector")]
         public async Task<IActionResult> RegisterDirector(RegistrationModel model)
         {
@@ -100,7 +100,7 @@ namespace BloggingApis.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [Route("registerationResponsable")]
         public async Task<IActionResult> Registerresponsable(RegistrationModel model)
         {

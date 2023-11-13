@@ -53,12 +53,12 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
             try
             {
                 // Ejecutar el stored procedure para insertar una nueva población
-                var result = await _dbContext.Database.ExecuteSqlRawAsync("sp_IngresarPoblacion @Nombre, @IdPais, @NumHabitantes, @Descripcion, @IdActuacion, @Status",
+                var result = await _dbContext.Database.ExecuteSqlRawAsync("sp_IngresarPoblacion @Nombre, @IdPais, @NumHabitantes, @Descripcion, @Status",
                     new SqlParameter("@Nombre", SqlDbType.NVarChar, 255) { Value = newPoblacion.Nombre },
                     new SqlParameter("@IdPais", SqlDbType.Int) { Value = newPoblacion.IdPais },
                     new SqlParameter("@NumHabitantes", SqlDbType.Int) { Value = newPoblacion.NumHabitantes },
                     new SqlParameter("@Descripcion", SqlDbType.NVarChar, 255) { Value = newPoblacion.Descripcion },
-                    new SqlParameter("@IdActuacion", SqlDbType.Int) { Value = newPoblacion.IdActuacion },
+                    //  new SqlParameter("@IdActuacion", SqlDbType.Int) { Value = newPoblacion.IdActuacion },
                     new SqlParameter("@Status", SqlDbType.Int) { Value = newPoblacion.Status });
 
                 // Devolver una respuesta 201 Created si la inserción fue exitosa
@@ -89,13 +89,13 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
             try
             {
                 // Ejecutar el stored procedure para actualizar la población
-                var result = await _dbContext.Database.ExecuteSqlRawAsync("sp_UpdatePoblacion @Id, @Nombre, @IdPais, @NumHabitantes, @Descripcion, @IdActuacion, @Status",
+                var result = await _dbContext.Database.ExecuteSqlRawAsync("sp_UpdatePoblacion @Id, @Nombre, @IdPais, @NumHabitantes, @Descripcion, @Status",
                     new SqlParameter("@Id", SqlDbType.Int) { Value = Id },
                     new SqlParameter("@Nombre", SqlDbType.NVarChar, 255) { Value = updatedPoblacion.Nombre },
                     new SqlParameter("@IdPais", SqlDbType.Int) { Value = updatedPoblacion.IdPais },
                     new SqlParameter("@NumHabitantes", SqlDbType.Int) { Value = updatedPoblacion.NumHabitantes },
                     new SqlParameter("@Descripcion", SqlDbType.NVarChar, 255) { Value = updatedPoblacion.Descripcion },
-                    new SqlParameter("@IdActuacion", SqlDbType.Int) { Value = updatedPoblacion.IdActuacion },
+                    // new SqlParameter("@IdActuacion", SqlDbType.Int) { Value = updatedPoblacion.IdActuacion },
                     new SqlParameter("@Status", SqlDbType.Int) { Value = updatedPoblacion.Status });
 
                 // Devolver una respuesta 200 OK si la actualización fue exitosa
