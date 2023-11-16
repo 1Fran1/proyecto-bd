@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Execute_storedProcedure_DotnetCore.Models;
 using Execute_storedProcedure_DotnetCore.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Execute_storedProcedure_DotnetCore.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class SedeController : ControllerBase
     {
         private readonly MiApiContext _dbContext;

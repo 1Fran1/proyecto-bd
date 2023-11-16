@@ -207,14 +207,6 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
 
 
 
-        //[HttpGet("ObtenerInfoPoblacionPorIdPoblacion/{Id}")]
-        //public async Task<IActionResult> Consulta_ObtenerInfoPoblacionPorIdPoblacion(int Id)
-        //{
-        //    var Sqlstr = $"EXEC Consulta_ObtenerInfoPoblacionPorIdPoblacion @Id={Id}";
-        //    var directorList = await _dbContext.InfoPoblacionModel.FromSqlRaw(Sqlstr).ToListAsync();
-        //    return Ok(directorList);
-        //}
-
 
 
 
@@ -259,23 +251,6 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
 
 
 
-        //[HttpGet("Consulta_ContarProyectosEnTodosLosPaises")]
-        //public async Task<IActionResult> Consulta_ContarProyectosEnTodosLosPaises()
-        //{
-        //    try
-        //    {
-        //        var result = await _dbContext.ConsultasPublicas
-        //            .FromSqlRaw("Consulta_ContarProyectosEnTodosLosPaises")
-        //            .ToListAsync();
-
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Error interno del servidor: {ex.Message}");
-        //    }
-        //}
-
 
 
 
@@ -313,45 +288,7 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
 
 
 
-        //[HttpGet("Consulta_ContarProyectosPorSedes/{Id}")]
-        //public async Task<IActionResult> Consulta_ContarProyectosPorSedes(int Id)
-        //{
-        //    var Sqlstr = $"EXEC Consulta_ContarProyectosPorSedes @Id={Id}";
-        //    var directorList = await _dbContext.ConsultasPublicas.FromSqlRaw(Sqlstr).ToListAsync();
-        //    return Ok(directorList);
-        //}
-
-
-
-
-
-
-
-        //[HttpGet("Consulta_ContarProyectosPorTodasSedes")]
-        //public IActionResult Consulta_ContarProyectosPorSedes()
-        //{
-        //    try
-        //    {
-        //        var result = _dbContext.Set<ContarProyectosPorSedesModel>()
-        //            .FromSqlRaw("Consulta_ContarProyectosPorTodasSedes")
-        //            .ToList();
-
-        //        if (result.Any())
-        //        {
-        //            return Ok(result);
-        //        }
-        //        else
-        //        {
-        //            return NotFound();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Error interno del servidor: {ex.Message}");
-        //    }
-        //}
-
-
+     
 
 
 
@@ -380,27 +317,6 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
             }
         }
 
-
-
-
-
-
-        //[HttpGet("Consulta_ContarProyectosPorTodasSedes")]
-        //public async Task<IActionResult> Consulta_ContarProyectosPorTodasSedes()
-        //{
-        //    try
-        //    {
-        //        var result = await _dbContext.ContarProyectosEnTodosLosPaisesModel
-        //            .FromSqlRaw("Consulta_ContarProyectosPorTodasSedes")
-        //            .ToListAsync();
-
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Error interno del servidor: {ex.Message}");
-        //    }
-        //}
 
 
 
@@ -443,43 +359,5 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
 
 
 
-
-
-        //[HttpGet("{Nombre}")]
-        //public async Task<IActionResult> GetByNombre(string Nombre)
-        //{
-        //    var Sqlstr = "EXEC Consulta_ContarSedesPorPaisPorNombrePais @Nombre=" + Nombre;
-        //    var paisList = await _dbContext.ConsultasPublicas.FromSqlRaw(Sqlstr).ToListAsync();
-        //    return Ok(paisList);
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-        //    var directorList = await _dbContext.ConsultasPublicas.FromSqlRaw("EXEC Consulta_Proyecto_Actuaciones_En_Poblacion").ToListAsync();
-        //    return Ok(directorList);
-        //}
-
-
-
-        // Otros métodos para ejecutar procedimientos almacenados genéricos
-
-        // Por cada procedimiento almacenado que desees ejecutar, agrega un método similar al anterior
-        // y ajusta el nombre del procedimiento almacenado y los modelos de resultados según sea necesario.
     }
 }

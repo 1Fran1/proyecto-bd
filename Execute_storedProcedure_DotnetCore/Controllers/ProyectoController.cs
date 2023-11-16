@@ -7,11 +7,15 @@ using System.Data;
 using System.Threading.Tasks;
 using Execute_storedProcedure_DotnetCore.Models;
 using Execute_storedProcedure_DotnetCore.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Execute_storedProcedure_DotnetCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Director")]
+    [Authorize(Roles = "Responsable")]
     public class ProyectoController : ControllerBase
     {
         private readonly MiApiContext _dbContext;
