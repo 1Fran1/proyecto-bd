@@ -12,10 +12,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Execute_storedProcedure_DotnetCore.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class SedeController : ControllerBase
     {
         private readonly MiApiContext _dbContext;
@@ -25,50 +24,66 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
             _dbContext = dbContext;
         }
 
+
+
+
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAllSedes()
         {
-            var sedeList = await _dbContext.Sede.FromSqlRaw("EXEC sp_GetAllSedes").ToListAsync();
-            return Ok(sedeList);
+            try
+            {
+                var sedes = await _dbContext.Sede.ToListAsync();
+                return Ok(sedes);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
         }
 
-        [HttpGet("{Id}")]
-        public async Task<IActionResult> GetById(int Id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSedeById(int id)
         {
-            var sqlStr = $"EXEC sp_GetSede @Id={Id}";
-            var sede = await _dbContext.Sede.FromSqlRaw(sqlStr).SingleOrDefaultAsync();
-
-            if (sede == null)
+            try
             {
-                return NotFound("Sede no encontrada.");
-            }
+                var sede = await _dbContext.Sede.FirstOrDefaultAsync(s => s.IdSede == id);
+                if (sede == null)
+                {
+                    return NotFound();
+                }
 
-            return Ok(sede);
+                return Ok(sede);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Sede newSede)
+        public async Task<IActionResult> IngresarSede([FromBody] Sede nuevaSede)
         {
-            if (newSede == null)
+            if (nuevaSede == null)
             {
                 return BadRequest("Objeto de sede inválido");
             }
 
             try
             {
-                // Ejecutar el stored procedure para insertar una nueva sede
-                var result = await _dbContext.Database.ExecuteSqlRawAsync("EXEC sp_IngresarSede @IdPais, @IdDirector, @Ciudad, @Direccion, @Telefono, @Status",
-                    new SqlParameter("@IdPais", SqlDbType.Int) { Value = newSede.IdPais },
-                    new SqlParameter("@IdDirector", SqlDbType.Int) { Value = newSede.IdDirector },
-                    new SqlParameter("@Ciudad", SqlDbType.NVarChar, 255) { Value = newSede.Ciudad },
-                    new SqlParameter("@Direccion", SqlDbType.NVarChar, 255) { Value = newSede.Direccion },
-                    new SqlParameter("@Telefono", SqlDbType.NVarChar, 255) { Value = newSede.Telefono },
-                    new SqlParameter("@Status", SqlDbType.Int) { Value = newSede.Status });
+                var result = await _dbContext.Database.ExecuteSqlRawAsync(
+                    "EXEC sp_IngresarSede @IdPais, @IdDirector, @Ciudad, @FondoPresupuestario, @Direccion, @Telefono, @Status",
+                    new SqlParameter("@IdPais", nuevaSede.IdPais),
+                    new SqlParameter("@IdDirector", nuevaSede.IdDirector),
+                    new SqlParameter("@Ciudad", nuevaSede.Ciudad),
+                    new SqlParameter("@FondoPresupuestario", nuevaSede.Fondo_Presupuestario),
+                    new SqlParameter("@Direccion", nuevaSede.Direccion),
+                    new SqlParameter("@Telefono", nuevaSede.Telefono),
+                    new SqlParameter("@Status", nuevaSede.Status)
+                );
 
-                // Devolver una respuesta 201 Created si la inserción fue exitosa
                 if (result > 0)
                 {
-                    return CreatedAtAction(nameof(GetById), new { Id = newSede.IdSede }, newSede);
+                    return CreatedAtAction(nameof(GetSedeById), new { Id = nuevaSede.IdSede }, nuevaSede);
                 }
                 else
                 {
@@ -77,72 +92,52 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
             }
             catch (Exception ex)
             {
-                // Manejar cualquier error que ocurra durante la operación de base de datos
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
 
-        [HttpPut("{Id}")]
-        public async Task<IActionResult> Put(int Id, [FromBody] Sede updatedSede)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSede(int id, [FromBody] Sede sedeActualizada)
         {
-            if (updatedSede == null || updatedSede.IdSede != Id)
+            if (sedeActualizada == null || sedeActualizada.IdSede != id)
             {
-                return BadRequest("Objeto de sede inválido o Id no coincidente");
+                return BadRequest("Datos inválidos para la actualización.");
             }
 
             try
             {
-                // Ejecutar el stored procedure para actualizar la sede
-                var result = await _dbContext.Database.ExecuteSqlRawAsync("EXEC sp_UpdateSede @Id, @IdPais, @IdDirector, @Ciudad, @Direccion, @Telefono, @Status",
-                    new SqlParameter("@Id", SqlDbType.Int) { Value = Id },
-                    new SqlParameter("@IdPais", SqlDbType.Int) { Value = updatedSede.IdPais },
-                    new SqlParameter("@IdDirector", SqlDbType.Int) { Value = updatedSede.IdDirector },
-                    new SqlParameter("@Ciudad", SqlDbType.NVarChar, 255) { Value = updatedSede.Ciudad },
-                    new SqlParameter("@Direccion", SqlDbType.NVarChar, 255) { Value = updatedSede.Direccion },
-                    new SqlParameter("@Telefono", SqlDbType.NVarChar, 255) { Value = updatedSede.Telefono },
-                    new SqlParameter("@Status", SqlDbType.Int) { Value = updatedSede.Status });
+                _dbContext.Sede.Update(sedeActualizada);
+                await _dbContext.SaveChangesAsync();
 
-                // Devolver una respuesta 200 OK si la actualización fue exitosa
-                if (result > 0)
-                {
-                    return Ok(updatedSede);
-                }
-                else
-                {
-                    return NotFound("Sede no encontrada.");
-                }
+                return Ok(sedeActualizada);
             }
             catch (Exception ex)
             {
-                // Manejar cualquier error que ocurra durante la operación de base de datos
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
 
-        [HttpDelete("{Id}")]
-        public async Task<IActionResult> Delete(int Id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSede(int id)
         {
             try
             {
-                // Ejecutar el stored procedure para eliminar la sede
-                var result = await _dbContext.Database.ExecuteSqlRawAsync("EXEC sp_DeleteSede @Id",
-                    new SqlParameter("@Id", SqlDbType.Int) { Value = Id });
+                var sede = await _dbContext.Sede.FirstOrDefaultAsync(s => s.IdSede == id);
+                if (sede == null)
+                {
+                    return NotFound();
+                }
 
-                // Devolver una respuesta 204 No Content si la eliminación fue exitosa
-                if (result > 0)
-                {
-                    return NoContent();
-                }
-                else
-                {
-                    return NotFound("Sede no encontrada.");
-                }
+                _dbContext.Sede.Remove(sede);
+                await _dbContext.SaveChangesAsync();
+
+                return NoContent();
             }
             catch (Exception ex)
             {
-                // Manejar cualquier error que ocurra durante la operación de base de datos
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
     }
+
 }

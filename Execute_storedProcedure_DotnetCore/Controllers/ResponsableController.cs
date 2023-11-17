@@ -14,8 +14,8 @@ namespace Execute_storedProcedure_DotnetCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Director")]
+    //[Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Director")]
     public class ResponsableController : ControllerBase
     {
         private readonly MiApiContext _dbContext;

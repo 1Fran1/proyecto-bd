@@ -113,6 +113,9 @@ using (var scope = app.Services.CreateScope())
     if (!roleExists)
     {
         await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+        await roleManager.CreateAsync(new IdentityRole(UserRoles.Director));
+        await roleManager.CreateAsync(new IdentityRole(UserRoles.Responsable));
+        await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
     }
 
     // Verificar si el usuario administrador ya existe

@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.Authorization;
 namespace Execute_storedProcedure_DotnetCore.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Director")]
-    [Authorize(Roles = "Responsable")]
+    //[Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Director")]
+    //[Authorize(Roles = "Responsable")]
     [ApiController]
     public class ActuacionController : ControllerBase
     {
